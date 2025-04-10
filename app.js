@@ -11,7 +11,6 @@ const flash = require("connect-flash");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override")
 const User = require("./models/user.js");
-const Products = require("./models/product.js");
 
 const productRoutes = require("./routes/product.js");
 const userRoutes = require("./routes/user.js");
