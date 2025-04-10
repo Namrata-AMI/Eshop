@@ -1,9 +1,11 @@
+require("dotenv").config();
+
 const axios = require("axios");
 const mongoose = require("mongoose");
 const Product = require("../models/product.js");
 
 
-const dbUrl = "mongodb://127.0.0.1:27017/Eshop";
+const dbUrl = process.env.MONGO_URL;
 
 async function fakedata (){
     try{

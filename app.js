@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -15,7 +17,7 @@ const productRoutes = require("./routes/product.js");
 const userRoutes = require("./routes/user.js");
 
 
-const dbUrl = "mongodb://127.0.0.1:27017/Eshop";
+const dbUrl = process.env.MONGO_URL;
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -26,7 +28,7 @@ app.use(express.static(path.join(__dirname,"public")));
 
 
 const sessionOptions = {
-    secret: "OurSecret",         // oour secret
+    secret: process.env.SECRET,         // oour secret
     resave:false,
     saveUninitialized:true,
     cookie:{
