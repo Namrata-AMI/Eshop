@@ -14,10 +14,12 @@
             <div class="invalid-feedback">Looks Good!</div>
         </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" placeholder="Enter email"  id ="email" class="form-control" required>
+        <input type="email" name="email" placeholder="Enter email" id="email"
+            class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <div class="invalid-feedback">
+            Please enter a valid email address.
         </div>
+
 
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>

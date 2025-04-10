@@ -1,11 +1,17 @@
-require("dotenv").config();
+
+const dotenv = require("dotenv");
+dotenv.config({ path: "../.env" })
+
 
 const axios = require("axios");
 const mongoose = require("mongoose");
 const Product = require("../models/product.js");
 
+console.log("DB URL from .env:", process.env.MONGO_URL);
 
 const dbUrl = process.env.MONGO_URL;
+console.log("DB URL from .env:", dbUrl); // Debug line
+
 
 async function fakedata (){
     try{
