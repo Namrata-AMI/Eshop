@@ -11,6 +11,7 @@ const flash = require("connect-flash");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override")
 const User = require("./models/user.js");
+const cors = require("cors");
 
 const productRoutes = require("./routes/product.js");
 const userRoutes = require("./routes/user.js");
@@ -25,6 +26,10 @@ app.engine("ejs",ejsMate);
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,"public")));
 
+app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true
+  }));
 
 const sessionOptions = {
     secret: process.env.SECRET,         // oour secret
