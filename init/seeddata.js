@@ -1,5 +1,5 @@
 
-/*const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 dotenv.config({ path: "../.env" })
 
 
@@ -43,4 +43,4 @@ async function fakedata (){
 } 
 
 
-fakedata();*/
+fakedata();
