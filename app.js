@@ -12,6 +12,7 @@ const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const User = require("./models/user.js");
 const cors = require("cors");
+const MongoStore = require("connect-mongo");
 
 const productRoutes = require("./routes/product.js");
 const userRoutes = require("./routes/user.js");
@@ -51,6 +52,7 @@ const sessionOptions = {
     secret: process.env.SECRET || 'defaultsecret',
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie: {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
