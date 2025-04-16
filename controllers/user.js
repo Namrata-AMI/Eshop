@@ -51,7 +51,7 @@ module.exports.login = async (req,res)=>{
         return res.redirect("/app");
     }
     catch(e){
-        console.error("Login error:", error);
+        console.error("Login error:", e);
         req.flash("error", "Something went wrong, please try again");
         res.redirect("/app/login");
     }  

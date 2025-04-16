@@ -16,7 +16,7 @@ const cors = require("cors");
 const productRoutes = require("./routes/product.js");
 const userRoutes = require("./routes/user.js");
 
-// 🔗 MongoDB Connection
+
 const dbUrl = process.env.MONGO_URL;
 
 const allowedOrigins = [

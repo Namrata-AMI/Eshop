@@ -17,7 +17,10 @@ router.route("/login")
 .get(userController.renderLoginForm)
 .post(passport.authenticate("local",
     {failureRedirect:"/app/login",               //used middleware "passport.authenticate()"//
-    failureFlash: true}),userController.login);
+    failureFlash: true}),(req,res)=>{
+        req.flash("success","Welcome to Eshop, You are logged in !");
+        res.redirect("/app");
+    });
 
 
 
