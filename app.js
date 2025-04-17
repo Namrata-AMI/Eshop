@@ -20,10 +20,6 @@ const userRoutes = require("./routes/user.js");
 
 const dbUrl = process.env.MONGO_URL;
 
-const allowedOrigins = [
-    'http://localhost:8080',
-    'https://eshop-2-9ery.onrender.com/app'
-];
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,6 +29,10 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
 
+const allowedOrigins = [
+    'http://localhost:8080',  
+    'https://eshop-2-9ery.onrender.com', 
+];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -44,7 +44,6 @@ app.use(cors({
     },
     credentials: true
 }));
-
 
 
 
