@@ -115,6 +115,6 @@ async function main() {
 
 const port = 8080;
 
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
