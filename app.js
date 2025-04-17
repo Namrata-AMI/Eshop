@@ -102,10 +102,10 @@ async function main() {
 }
 main()
     .then(() => {
-        console.log("mongoDB connected");
+        console.log("db connected");
     })
     .catch((e) => {
-        console.error("mongoDB connection error:", e);
+        console.error("db error:", e);
     });
 
 

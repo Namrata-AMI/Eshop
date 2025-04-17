@@ -109,15 +109,17 @@ exports.cart = async (req, res) => {
       }
   
       await cart.save();
-  
+      
       req.flash("success", `${product.name} added to cart!`);
-      res.redirect("/app");
-    } catch (e) {
+      return res.redirect("/app");
+    } 
+    
+    catch (e) {
       console.error(e);
       req.flash("error", "Something went wrong!");
       res.redirect("/app");
     }
-  };
+};
   
 
 // incarese qnty
@@ -200,7 +202,9 @@ exports.purchaseProduct = async (req, res) => {
       req.flash("error", "Product not found");
       return res.redirect("/app");
     }
-    res.render("lists/purchase.ejs", { product }); 
+    const deliveryDays = Math.floor(Math.random() * 10) + 1;
+
+    res.render("lists/purchase.ejs", { product ,deliveryDays }); 
   } 
   catch (e) {
     console.error("Purchase Error:", e.message);
@@ -208,3 +212,4 @@ exports.purchaseProduct = async (req, res) => {
     res.redirect("/app");
   }
 };
+
