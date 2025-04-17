@@ -5,11 +5,11 @@ const Cart = require("../models/cart.js");
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.find({});
-        res.render("lists/index", { products });
+        return res.render("lists/index", { products });
     } catch (e) {
         console.error("Error fetching products:", e);
         req.flash("error", "Failed to load products");
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 };
 
@@ -25,7 +25,7 @@ exports.getProductById = async (req, res) => {
     } catch (e) {
         console.error("Error fetching product:", e);
         req.flash("error", "Failed to load product");
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 };
 
@@ -33,7 +33,6 @@ exports.getProductById = async (req, res) => {
 exports.searchProduct = async (req, res) => {
     try {
         const query = req.query.query;
-        console.log("Search query:", query);
         const products = await Product.find({
             $or: [
                 { name: { $regex: query, $options: "i" } },
@@ -48,7 +47,7 @@ exports.searchProduct = async (req, res) => {
     } catch (e) {
         console.error("Error searching products:", e);
         req.flash("error", "Something went wrong!");
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 };
 
@@ -64,7 +63,7 @@ exports.cartItems = async (req, res) => {
     } catch (e) {
         console.error("Error fetching cart items:", e);
         req.flash("error", "Something went wrong!");
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 };
 
@@ -100,11 +99,11 @@ exports.cart = async (req, res) => {
 
         await cart.save();
         req.flash("success", `${product.name} added to cart!`);
-        res.redirect("/app");
+        return res.redirect("/app/cart");
     } catch (e) {
         console.error("Error adding to cart:", e);
         req.flash("error", "Something went wrong!");
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 };
 
@@ -122,7 +121,7 @@ exports.addqnt = async (req, res) => {
         }
 
         const item = cart.items.find(item => item.product.toString() === productId);
-        
+
         if (!item) {
             req.flash("error", "Product not found in cart.");
             return res.redirect("/app/cart");
@@ -133,11 +132,11 @@ exports.addqnt = async (req, res) => {
         await cart.save();
 
         req.flash("success", "Quantity increased!");
-        res.redirect("/app/cart");
+        return res.redirect("/app/cart");
     } catch (e) {
         console.error("Error increasing quantity:", e);
         req.flash("error", "Something went wrong!");
-        res.redirect("/app/cart");
+        return res.redirect("/app/cart");
     }
 };
 
@@ -155,11 +154,11 @@ exports.delqnt = async (req, res) => {
         await cart.save();
 
         req.flash("success", "Item deleted");
-        res.redirect("/app/cart");
+        return res.redirect("/app/cart");
     } catch (err) {
         console.error("Error deleting item from cart:", err);
         req.flash("error", "Something went wrong.");
-        res.redirect("/app/cart");
+        return res.redirect("/app/cart");
     }
 };
 
@@ -176,10 +175,11 @@ exports.purchaseProduct = async (req, res) => {
 
         const deliveryDays = Math.floor(Math.random() * 10) + 1;
 
-        res.render("lists/purchase", { product, deliveryDays });
-    } catch (e) {
+        return res.render("lists/purchase", { product, deliveryDays });
+    }
+    catch (e) {
         console.error("Purchase Error:", e.message);
         req.flash("error", "Something went wrong");
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 };

@@ -9,6 +9,8 @@ const {isLoggedIn} = require("../middlewares/middleware.js");
 router.get("/", productController.getAllProducts);
 
 router.get("/search", productController.searchProduct);
+
+
 router.get("/cart", isLoggedIn, productController.cartItems);
 
 router.post("/cart/:id", isLoggedIn, productController.cart);

@@ -91,25 +91,30 @@ app.use((req, res, next) => {
 app.use("/app", userRoutes);
 app.use("/app", productRoutes);
 
+
+
 app.all("*", (req, res) => {
     req.flash("error", "Page not available");
     return res.redirect("/app");
 });
 
 
+
+main()
+.then(() => {
+    console.log("db connected");
+})
+.catch((e) => {
+    console.error("db error:", e);
+});
+
+
 async function main() {
     await mongoose.connect(dbUrl);
 }
-main()
-    .then(() => {
-        console.log("db connected");
-    })
-    .catch((e) => {
-        console.error("db error:", e);
-    });
-
 
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
