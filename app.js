@@ -36,17 +36,6 @@ const allowedOrigins = [
     'https://eshop-three-weld.vercel.app'
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    credentials: true
-}));
-
 
 
 //console.log(MongoStore);
@@ -64,7 +53,7 @@ const store = MongoStore.create({
 
 const sessionOptions = {
     store,
-    secret: process.env.SECRET || 'defaultsecret',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
 };
@@ -136,3 +125,5 @@ app.listen(port,(req,res)=>{
 })
 
 module.exports = app;
+
+
