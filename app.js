@@ -32,8 +32,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 const allowedOrigins = [
-    'http://localhost:8080',  
-    'https://eshop-2-9ery.onrender.com', 
+    'http://localhost:8080',
+    'https://eshop-three-weld.vercel.app'
 ];
 
 app.use(cors({
@@ -118,7 +118,7 @@ app.use((req, res) => {
 });
 
 
-
+const port = 8080;
 
 async function main() {
     console.log(dbUrl);
@@ -130,5 +130,9 @@ async function main() {
 }
 
 main().catch(err => console.error(err));
+
+app.listen(port,(req,res)=>{
+    console.log("server is listening to port 8080");
+})
 
 module.exports = app;
