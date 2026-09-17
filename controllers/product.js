@@ -1,6 +1,12 @@
 const Product = require("../models/product.js");
 const Cart = require("../models/cart.js");
 
+
+// home
+exports.getHome = async(req,res)=>{
+    res.render("lists/home");
+}
+
 // Fetch all products
 exports.getAllProducts = async (req, res) => {
     try {
@@ -182,4 +188,41 @@ exports.purchaseProduct = async (req, res) => {
         req.flash("error", "Something went wrong");
         return res.redirect("/app");
     }
+};
+
+
+
+
+// Show products by collection
+exports.getCollection = async (req, res) => {
+    try {
+        const { name } = req.params;
+
+        const products = await Product.find({
+            collection: name
+        });
+
+        if (products.length === 0) {
+            req.flash("error", "No products found in this collection");
+            return res.redirect("/app");
+        }
+
+        res.render("lists/collection", {
+            products,
+            collection: name
+        });
+
+    } 
+    catch (e) {
+        console.error("Error fetching collection:", e);
+        req.flash("error", "Failed to load collection");
+        return res.redirect("/app");
+    }
+};
+
+
+
+//style page
+exports.getStyle = (req, res) => {
+    res.render("lists/style");
 };

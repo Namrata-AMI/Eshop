@@ -10,7 +10,7 @@ const Product = require("../models/product.js");
 console.log("DB URL from .env:", process.env.MONGO_URL);
 
 const dbUrl = process.env.MONGO_URL;
-console.log("DB URL from .env:", dbUrl); // Debug line
+console.log("DB URL from .env:", dbUrl);
 
 
 async function fakedata (){

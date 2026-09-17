@@ -21,6 +21,18 @@ const productSchema = new Schema({
         required:true,
         enum:["Electronics","Clothing","Home Appliances","Books","Toys","Outerwear","Other", "Jewelery", "Men's clothing", "Women's clothing"],
     },
+
+    collection: {
+        type: String,
+        required: true,
+        enum: [
+            "Solitaire",
+            "Halo",
+            "Eternity",
+            "Wedding"
+        ]
+    },
+
     stock:{
         type:Number,
         required:true,

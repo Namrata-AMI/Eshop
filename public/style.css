@@ -1,44 +1,2949 @@
-body{
-    font-family: "Plus Jakarta Sans", sans-serif !important;
-    display:flex;
-    flex-direction: column;
+/* =========================================================
+GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    background: #fff;
+    color: #111;
+}
+
+body {
     min-height: 100vh;
-    background-image: linear-gradient(to top, var(--tw-gradient-stops));
+    overflow-x: hidden;
 }
 
-.container{
-  flex:1;
+.container-fluid {
+    padding: 0 !important;
 }
 
-.navbar{
-  height:5rem;
-  background-color: white;
+
+/* =========================================================
+HOME NAVBAR
+========================================================= */
+
+.navbarHome {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 90px;
+
+    z-index: 1000;
+
+    background: transparent;
 }
 
-.fa-compass{
-  color:dodgerblue;
-  font-size: 2rem;
+.home-navbar-inner {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 3rem;
 }
 
-.nav-link{
-  color:#222222 !important; 
+
+/* VIORA */
+
+.viora-brand {
+    color: #fff !important;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 2rem;
+    font-weight: 500;
+
+    letter-spacing: 6px;
+
+    text-decoration: none;
 }
 
-.card-img-top{
-  width:100%;
-  height:300px !important;
-  object-fit: cover;
+
+/* HOME MENU */
+
+.home-menu {
+    display: flex;
+
+    gap: 32px;
+
+    margin-left: 70px;
 }
 
-.product_img{
-  width:100%; 
-  height:100vh;
-  object-fit:contain;
+.home-menu a {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
 }
 
-.prdname{
-  font-size: 3.4rem;
-  margin-bottom: 3rem;
-  margin-top: 0;
-  font-weight: 100;
+.home-menu a:hover {
+    color: #b00018;
+}
+
+
+/* HOME RIGHT */
+
+.home-actions {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+}
+
+.home-actions a {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.home-actions a:hover {
+    color: #b00018;
+}
+
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+
+    height: 220vh;
+    min-height: 700px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+HERO IMAGE
+========================================================= */
+
+.hero > img {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center center;
+
+    display: block;
+}
+
+
+/* =========================================================
+HERO OVERLAY
+========================================================= */
+
+.hero-overlay {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(30, 0, 0, 0.70) 0%,
+            rgba(60, 0, 10, 0.35) 40%,
+            rgba(0, 0, 0, 0.05) 75%
+        );
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+HERO CONTENT
+========================================================= */
+
+.hero-content {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 7%;
+    top: 30%;
+
+    transform: translateY(-50%);
+
+    width: 480px;
+
+    color: #fff;
+}
+
+
+/* SMALL TITLE */
+
+.hero-small {
+    margin: 0 0 18px;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: #fff;
+}
+
+
+/* MAIN TITLE */
+
+.hero h1 {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(60px, 7vw, 100px);
+
+    line-height: 0.9;
+
+    font-weight: 300;
+
+    letter-spacing: -2px;
+}
+
+
+/* DESCRIPTION */
+
+.hero-description {
+    margin-top: 30px;
+
+    max-width: 380px;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    color: #f5f5f5;
+}
+
+
+/* =========================================================
+EXPLORE BUTTON
+========================================================= */
+
+.hero-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 35px;
+
+    margin-top: 35px;
+
+    padding: 14px 22px;
+
+    width: 160px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.hero-btn span {
+    font-size: 18px;
+}
+
+.hero-btn:hover {
+    background: #65000f;
+
+    border-color: #65000f;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.footer {
+    width: 100%;
+
+    background: #310202;
+
+    color: #fff;
+
+    padding: 40px 20px;
+
+    border-top: 1px solid #222;
+}
+
+.f-info {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* SOCIAL ICONS */
+
+.f-info-socials {
+    display: flex;
+
+    gap: 20px;
+}
+
+.f-info-socials a {
+    color: #fff;
+
+    font-size: 20px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.f-info-socials a:hover {
+    color: #8f0015;
+}
+
+
+/* BRAND */
+
+.f-info-brand {
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color: #ccc;
+
+    text-transform: uppercase;
+}
+
+
+/* FOOTER LINKS */
+
+.f-info-links {
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+}
+
+.f-info-links a {
+    color: #ccc;
+
+    text-decoration: none;
+
+    font-size: 13px;
+}
+
+.f-info-links a:hover {
+    color: #fff;
+}
+
+
+/* =========================================================
+NORMAL NAVBAR
+LOGIN / SIGNUP / CART / OTHER PAGES
+========================================================= */
+
+.normal-navbar {
+    width: 100%;
+
+    height: 80px;
+
+    background: #fff !important;
+
+    border-bottom: 1px solid #e8e8e8;
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+.normal-navbar-inner {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 3rem !important;
+}
+
+
+/* NORMAL VIORA */
+
+.normal-brand {
+    color: #111 !important;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.9rem;
+
+    font-weight: 500;
+
+    letter-spacing: 5px;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+NORMAL NAVBAR SEARCH
+========================================================= */
+
+.normal-search {
+    margin-left: auto;
+
+    margin-right: 40px;
+
+    width: 430px;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+}
+
+.normal-search .search-inp {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 105px 0 20px;
+
+    border: 1px solid #d9d9d9;
+
+    border-radius: 30px;
+
+    background: #fff;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    font-size: 13px;
+
+    color: #222;
+
+    outline: none;
+
+    box-shadow: none;
+
+    transition: 0.3s;
+}
+
+.normal-search .search-inp:focus {
+    border-color: #450012;
+
+    box-shadow: 0 0 0 1px #450012;
+}
+
+
+/* SEARCH BUTTON */
+
+.normal-search .search-btn {
+    position: absolute;
+
+    right: 4px;
+
+    top: 4px;
+
+    height: 36px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #450012;
+
+    color: #fff;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    transition: 0.3s;
+}
+
+.normal-search .search-btn:hover {
+    background: #65000f;
+
+    transform: translateY(-1px);
+}
+
+.normal-search .search-btn i {
+    font-size: 11px;
+}
+
+
+/* =========================================================
+NORMAL USER LINKS
+========================================================= */
+
+.normal-user-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.normal-nav-link {
+    color: #222 !important;
+
+    text-decoration: none;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    transition: 0.3s;
+}
+
+.normal-nav-link:hover {
+    color: #8f0015 !important;
+}
+
+
+/* =========================================================
+OTHER BUTTONS
+IMPORTANT:
+Don't use .btn globally because Bootstrap also uses .btn
+========================================================= */
+
+.product-btn {
+    background-color: #310202;
+
+    color: #ccc;
+
+    margin-top: 1rem;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 4px;
+}
+
+.product-btn:hover {
+    background-color: #450012;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* HOME NAVBAR */
+
+    .home-navbar-inner {
+        padding: 0 1.5rem;
+    }
+
+    .navbarHome {
+        height: 75px;
+    }
+
+    .viora-brand {
+        font-size: 1.6rem;
+
+        letter-spacing: 4px;
+    }
+
+    .home-menu {
+        display: none;
+    }
+
+    .home-actions {
+        gap: 15px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        width: 100%;
+
+        height: 100vh;
+
+        min-height: 650px;
+
+        position: relative;
+
+        overflow: hidden;
+    }
+
+    .hero > img {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center top;
+
+        display: block;
+    }
+
+    .hero-content {
+        left: 7%;
+
+        right: 7%;
+
+        top: 58%;
+
+        width: auto;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+
+        line-height: 0.92;
+    }
+
+    .hero-description {
+        font-size: 13px;
+
+        max-width: 300px;
+    }
+
+
+    /* NORMAL NAVBAR */
+
+    .normal-navbar {
+        height: auto;
+
+        min-height: 80px;
+    }
+
+    .normal-navbar-inner {
+        padding: 15px 1rem !important;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    .normal-brand {
+        font-size: 1.6rem;
+    }
+
+    .normal-search {
+        order: 3;
+
+        width: 100%;
+
+        margin: 0;
+    }
+
+    .normal-search .search-inp {
+        width: 100%;
+    }
+
+    .normal-search .search-btn {
+        white-space: nowrap;
+    }
+
+    .normal-user-links {
+        margin-left: auto;
+
+        gap: 15px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        padding: 35px 15px;
+    }
+
+    .f-info-socials {
+        gap: 18px;
+    }
+
+    .f-info-brand {
+        text-align: center;
+
+        font-size: 11px;
+    }
+}
+
+
+
+
+
+
+/******************* collection data *****************/
+
+.collection-section {
+    padding: 100px 5%;
+    background: #fff;
+}
+
+
+/* HEADING */
+
+.collection-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.collection-heading p {
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    color: #777;
+}
+
+.collection-heading h2 {
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin: 0;
+}
+
+
+/* FOUR CARDS */
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+
+/* CARD */
+
+.collection-card {
+    text-decoration: none;
+    color: #111;
+
+    display: block;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+/* IMAGE */
+
+.collection-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+
+    overflow: hidden;
+
+    background: #f5f3f0;
+}
+
+
+.collection-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.8s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* TEXT */
+
+.collection-info {
+    padding: 18px 2px;
+}
+
+.collection-info h3 {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+
+    margin: 0 0 8px;
+}
+
+.collection-info span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    position: relative;
+}
+
+
+/* MINIMAL HOVER */
+
+.collection-card:hover .collection-image img {
+    transform: scale(1.05);
+}
+
+
+.collection-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.collection-info span::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -5px;
+
+    width: 0;
+    height: 1px;
+
+    background: #111;
+
+    transition: width 0.35s ease;
+}
+
+
+.collection-card:hover .collection-info span::after {
+    width: 100%;
+}
+
+
+
+
+/**************  collection page data   *******************/
+
+/* =========================================================
+   COLLECTION PRODUCT PAGE
+   This is ONLY for /collection/:name
+========================================================= */
+
+.collection-page {
+    width: 100%;
+    padding: 0 5% 80px;
+    background: #fff;
+}
+
+
+/* =========================================================
+   COLLECTION HEADING
+========================================================= */
+
+.collection-page .collection-heading {
+    text-align: center;
+    padding: 55px 0 50px;
+}
+
+.collection-page .collection-heading p {
+    margin: 0 0 12px;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #777;
+}
+
+.collection-page .collection-heading h1 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    color: #111;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.collection-page .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px 20px;
+    width: 100%;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.collection-page .product-card {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #111;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.collection-page .product-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #f5f3f0;
+}
+
+.collection-page .product-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
+
+.collection-page .product-info {
+    padding: 15px 2px 10px;
+}
+
+.collection-page .product-info h3 {
+    margin: 0 0 7px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 21px;
+    font-weight: 500;
+
+    color: #111;
+}
+
+.collection-page .product-info p {
+    margin: 0;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+
+    color: #555;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.collection-page .product-card:hover .product-image img {
+    transform: scale(1.04);
+}
+
+.collection-page .product-card:hover .product-info h3 {
+    color: #65000f;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .collection-page .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .collection-page {
+        padding: 0 20px 60px;
+    }
+
+    .collection-page .collection-heading {
+        padding: 40px 0 35px;
+    }
+
+    .collection-page .collection-heading h1 {
+        font-size: 38px;
+    }
+
+    .collection-page .product-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .collection-page .product-info h3 {
+        font-size: 20px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+/***** media for index file *****/
+
+/* =========================================================
+   VIORA PRODUCTS PAGE
+========================================================= */
+
+.viora-products-page {
+    background: #faf9f6;
+    padding: 70px 0 100px;
+}
+
+
+.viora-products-container {
+    width: min(1180px, calc(100% - 80px));
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.viora-products-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.viora-eyebrow {
+    margin: 0 0 10px;
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: #650019;
+}
+
+.viora-products-header h1 {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 48px;
+    font-weight: 400;
+
+    line-height: 1.1;
+
+    color: #171414;
+}
+
+.viora-header-line {
+    width: 45px;
+    height: 1px;
+
+    background: #650019;
+
+    margin: 18px auto 0;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.viora-product-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.viora-product-card {
+    background: #fff;
+
+    border: 1px solid #e6dfd7;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.viora-product-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(40, 25, 18, 0.10);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.viora-product-image-link {
+    display: block;
+
+    text-decoration: none;
+}
+
+.viora-product-image-box {
+    position: relative;
+
+    width: 100%;
+    height: 360px;
+
+    overflow: hidden;
+
+    background: #f2eee8;
+}
+
+.viora-product-image-box img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.6s ease;
+}
+
+.viora-product-card:hover
+.viora-product-image-box img {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.viora-view-overlay {
+    position: absolute;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform: translate(-50%, 10px);
+
+    padding-bottom: 5px;
+
+    color: #fff;
+
+    border-bottom: 1px solid #fff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.viora-product-card:hover
+.viora-view-overlay {
+    opacity: 1;
+
+    transform: translate(-50%, 0);
+}
+
+
+/* darkens image slightly when hovered */
+
+.viora-product-image-box::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(20, 10, 5, 0.15);
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+    pointer-events: none;
+}
+
+.viora-product-card:hover
+.viora-product-image-box::after {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.viora-product-content {
+    padding: 22px 22px 20px;
+}
+
+
+/* =========================================================
+   NAME + PRICE
+========================================================= */
+
+.viora-product-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+}
+
+.viora-product-heading h2 {
+    margin: 0 0 5px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 24px;
+
+    font-weight: 500;
+
+    line-height: 1.15;
+
+    color: #171414;
+}
+
+.viora-product-brand {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: #8b7768;
+}
+
+.viora-product-price {
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 18px;
+
+    color: #650019;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.viora-product-description {
+    margin: 0 0 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: #766d66;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.viora-product-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top: 1px solid #e8e0d8;
+
+    padding-top: 15px;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.viora-add-cart {
+    border: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    color: #650019;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    transition: opacity 0.3s ease;
+}
+
+.viora-add-cart i {
+    margin-right: 6px;
+
+    font-size: 10px;
+}
+
+.viora-add-cart:hover {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   VIEW
+========================================================= */
+
+.viora-view-product {
+    color: #171414;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    transition: color 0.3s ease;
+}
+
+.viora-view-product span {
+    margin-left: 4px;
+
+    transition: margin-left 0.3s ease;
+}
+
+.viora-view-product:hover {
+    color: #650019;
+}
+
+.viora-view-product:hover span {
+    margin-left: 9px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .viora-products-container {
+        width: min(700px, calc(100% - 50px));
+    }
+
+    .viora-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .viora-products-page {
+        padding: 50px 0 70px;
+    }
+
+    .viora-products-container {
+        width: calc(100% - 30px);
+    }
+
+    .viora-products-header {
+        margin-bottom: 35px;
+    }
+
+    .viora-products-header h1 {
+        font-size: 38px;
+    }
+
+    .viora-product-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .viora-product-image-box {
+        height: 380px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+/*************  product .ejs *******************/
+
+
+/* =========================================================
+   VIORA PRODUCT DETAIL PAGE
+========================================================= */
+
+.viora-detail-page {
+    min-height: calc(100vh - 80px);
+
+    background: #faf9f6;
+
+    padding: 70px 0 100px;
+
+    overflow: hidden;
+}
+
+
+.viora-detail-container {
+    width: min(1180px, calc(100% - 80px));
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    gap: 75px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.viora-detail-image-section {
+    opacity: 0;
+
+    transform: translateX(-35px);
+
+    animation: vioraImageReveal 1s ease forwards;
+}
+
+
+.viora-detail-image-wrap {
+    position: relative;
+
+    width: 100%;
+
+    height: 620px;
+
+    overflow: hidden;
+
+    background: #f0ebe4;
+}
+
+
+.viora-detail-image-wrap::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+.viora-detail-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transform: scale(1.02);
+
+    transition:
+        transform 1s cubic-bezier(.2, .7, .2, 1);
+}
+
+
+.viora-detail-image-wrap:hover .viora-detail-image {
+    transform: scale(1.07);
+}
+
+
+.viora-image-caption {
+    margin: 13px 0 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #8b796b;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+.viora-detail-info {
+    opacity: 0;
+
+    transform: translateX(35px);
+
+    animation: vioraInfoReveal 1s ease 0.2s forwards;
+}
+
+
+.viora-detail-eyebrow {
+    margin: 0 0 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #650019;
+}
+
+
+.viora-detail-title {
+    margin: 0;
+
+    max-width: 520px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: clamp(42px, 4vw, 64px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    color: #171414;
+}
+
+
+.viora-detail-line {
+    width: 55px;
+
+    height: 1px;
+
+    background: #650019;
+
+    margin: 25px 0;
+}
+
+
+.viora-detail-price {
+    margin: 0 0 35px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 27px;
+
+    color: #650019;
+}
+
+
+/* =========================================================
+   META INFORMATION
+========================================================= */
+
+.viora-detail-meta {
+    border-top: 1px solid #ded6cd;
+
+    border-bottom: 1px solid #ded6cd;
+
+    margin-bottom: 30px;
+}
+
+
+.viora-meta-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.viora-meta-row + .viora-meta-row {
+    border-top: 1px solid #e7e0d8;
+}
+
+
+.viora-meta-row span {
+    color: #8b796b;
+}
+
+
+.viora-meta-row strong {
+    font-weight: 500;
+
+    color: #292321;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.viora-detail-description {
+    max-width: 500px;
+
+    margin-bottom: 35px;
+}
+
+
+.viora-detail-description p {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    color: #706761;
+}
+
+
+/* =========================================================
+   PURCHASE BUTTON
+========================================================= */
+
+.viora-detail-actions {
+    margin-bottom: 22px;
+}
+
+
+.viora-purchase-btn {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    max-width: 390px;
+
+    padding: 17px 21px;
+
+    overflow: hidden;
+
+    background: #650019;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2.5px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.viora-purchase-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
+}
+
+
+.viora-purchase-btn:hover::before {
+    left: 130%;
+}
+
+
+.viora-purchase-btn:hover {
+    background: #4f0013;
+
+    color: #fff;
+
+    transform: translateY(-2px);
+}
+
+
+.viora-purchase-arrow {
+    font-size: 17px;
+
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+
+.viora-purchase-btn:hover .viora-purchase-arrow {
+    transform: translateX(7px);
+}
+
+
+/* =========================================================
+   SMALL NOTE
+========================================================= */
+
+.viora-detail-note {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+
+    font-size: 16px;
+
+    font-style: italic;
+
+    color: #9a8b80;
+}
+
+
+/* =========================================================
+   PAGE LOAD ANIMATIONS
+========================================================= */
+
+@keyframes vioraImageReveal {
+
+    0% {
+        opacity: 0;
+
+        transform: translateX(-35px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes vioraInfoReveal {
+
+    0% {
+        opacity: 0;
+
+        transform: translateX(35px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .viora-detail-container {
+        width: min(700px, calc(100% - 50px));
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+
+    .viora-detail-image-wrap {
+        height: 550px;
+    }
+
+
+    .viora-detail-info {
+        max-width: 600px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .viora-detail-page {
+        padding: 40px 0 70px;
+    }
+
+
+    .viora-detail-container {
+        width: calc(100% - 30px);
+
+        gap: 35px;
+    }
+
+
+    .viora-detail-image-wrap {
+        height: 440px;
+    }
+
+
+    .viora-detail-title {
+        font-size: 43px;
+    }
+
+
+    .viora-detail-price {
+        font-size: 24px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .viora-purchase-btn {
+        max-width: none;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************home.ejs**************************/
+
+/* =========================================================
+   VIORA HOME PAGE — LUXURY ANIMATIONS
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Hero image */
+
+.hero > img {
+    animation: vioraHeroZoom 12s ease-out forwards;
+    transform: scale(1.08);
+}
+
+
+/* Dark overlay */
+
+.hero-overlay {
+    animation: vioraOverlayReveal 1.5s ease forwards;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+    animation: vioraHeroContent 1s ease 0.2s forwards;
+
+    opacity: 0;
+}
+
+
+.hero-small {
+    opacity: 0;
+
+    animation:
+        vioraTextReveal 0.8s ease 0.5s forwards;
+}
+
+
+.hero h1 {
+    opacity: 0;
+
+    animation:
+        vioraTextReveal 1s ease 0.7s forwards;
+}
+
+
+.hero-description {
+    opacity: 0;
+
+    animation:
+        vioraTextReveal 0.9s ease 0.95s forwards;
+}
+
+
+.hero-btn {
+    opacity: 0;
+
+    animation:
+        vioraTextReveal 0.8s ease 1.2s forwards;
+}
+
+
+/* =========================================================
+   HERO BUTTON
+========================================================= */
+
+.hero-btn {
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        letter-spacing 0.35s ease;
+}
+
+
+.hero-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
+}
+
+
+.hero-btn:hover::before {
+    left: 130%;
+}
+
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+
+    letter-spacing: 2px;
+}
+
+
+.hero-btn span {
+    display: inline-block;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+.hero-btn:hover span {
+    transform: translateX(7px);
+}
+
+
+/* =========================================================
+   COLLECTION SECTION
+========================================================= */
+
+.collection-section {
+    overflow: hidden;
+}
+
+
+/* Heading */
+
+.collection-heading p {
+    opacity: 0;
+
+    animation:
+        vioraTextReveal 0.7s ease 0.15s forwards;
+}
+
+
+.collection-heading h2 {
+    opacity: 0;
+
+    animation:
+        vioraTextReveal 0.9s ease 0.3s forwards;
+}
+
+
+/* =========================================================
+   COLLECTION CARDS
+========================================================= */
+
+.collection-card {
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    animation:
+        vioraCollectionReveal 0.9s ease forwards;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+/* Stagger */
+
+.collection-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.collection-card:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.collection-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.collection-card:nth-child(4) {
+    animation-delay: 0.65s;
+}
+
+
+/* =========================================================
+   COLLECTION IMAGE
+========================================================= */
+
+.collection-image {
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.collection-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    transition:
+        transform 0.9s cubic-bezier(.2, .7, .2, 1),
+        filter 0.6s ease;
+}
+
+
+/* Image hover */
+
+.collection-card:hover .collection-image img {
+    transform: scale(1.07);
+}
+
+
+/* =========================================================
+   IMAGE LIGHT EFFECT
+========================================================= */
+
+.collection-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.18) 50%,
+            transparent 70%
+        );
+
+    transform: translateX(-120%);
+
+    transition: transform 0.9s ease;
+
+    pointer-events: none;
+}
+
+
+.collection-card:hover .collection-image::after {
+    transform: translateX(120%);
+}
+
+
+/* =========================================================
+   COLLECTION CARD HOVER
+========================================================= */
+
+.collection-card:hover {
+    transform: translateY(-7px);
+}
+
+
+/* =========================================================
+   COLLECTION TEXT
+========================================================= */
+
+.collection-info h3 {
+    transition:
+        color 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+.collection-card:hover .collection-info h3 {
+    transform: translateX(3px);
+}
+
+
+.collection-info span {
+    display: inline-block;
+
+    transition:
+        transform 0.35s ease,
+        letter-spacing 0.35s ease;
+}
+
+
+.collection-card:hover .collection-info span {
+    transform: translateX(7px);
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+
+/* Hero slow cinematic zoom */
+
+@keyframes vioraHeroZoom {
+
+    from {
+        transform: scale(1.08);
+    }
+
+    to {
+        transform: scale(1);
+    }
+
+}
+
+
+/* Overlay */
+
+@keyframes vioraOverlayReveal {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* Hero content */
+
+@keyframes vioraHeroContent {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Text */
+
+@keyframes vioraTextReveal {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Collection cards */
+
+@keyframes vioraCollectionReveal {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero > img,
+    .hero-overlay,
+    .hero-content,
+    .hero-small,
+    .hero h1,
+    .hero-description,
+    .hero-btn,
+    .collection-heading p,
+    .collection-heading h2,
+    .collection-card {
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*************style.ejs *************/
+
+/* =========================================================
+   VIORA STYLE PAGE
+   ========================================================= */
+
+.viora-style-page {
+    width: 100%;
+    background: #fff;
+    color: #171414;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.viora-style-hero {
+    min-height: 470px;
+    padding: 110px 20px 90px;
+    background: #faf9f6;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.viora-style-eyebrow {
+    margin: 0 0 18px;
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: #650019;
+}
+
+.viora-style-hero h1 {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 76px;
+    font-weight: 400;
+    line-height: 1;
+
+    letter-spacing: 3px;
+    color: #171414;
+}
+
+.viora-style-intro {
+    max-width: 520px;
+    margin: 25px auto 0;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+
+    color: #766d66;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.viora-style-section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.viora-style-section-heading > p {
+    margin: 0 0 10px;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: #650019;
+}
+
+.viora-style-section-heading h2 {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 43px;
+    font-weight: 400;
+    line-height: 1.15;
+
+    color: #171414;
+}
+
+
+/* =========================================================
+   STYLE CATEGORIES
+   ========================================================= */
+
+.viora-style-categories {
+    width: min(1180px, calc(100% - 80px));
+    margin: 0 auto;
+
+    padding: 100px 0;
+}
+
+.viora-style-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+}
+
+
+/* =========================================================
+   STYLE CARD
+   ========================================================= */
+
+.viora-style-card {
+    display: block;
+
+    color: #171414;
+    text-decoration: none;
+
+    background: #fff;
+
+    border: 1px solid #e6dfd7;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.viora-style-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(40, 25, 18, 0.10);
+}
+
+
+/* IMAGE */
+
+.viora-style-image {
+    width: 100%;
+    height: 420px;
+
+    overflow: hidden;
+
+    background: #f2eee8;
+}
+
+.viora-style-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.7s ease;
+}
+
+.viora-style-card:hover .viora-style-image img {
+    transform: scale(1.04);
+}
+
+
+/* CARD CONTENT */
+
+.viora-style-card-info {
+    padding: 23px 23px 25px;
+}
+
+.viora-style-card-info > span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    color: #8b7768;
+}
+
+.viora-style-card-info h3 {
+    margin: 0 0 9px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1.15;
+
+    color: #171414;
+}
+
+.viora-style-card-info p {
+    margin: 0 0 20px;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+
+    color: #766d66;
+}
+
+.viora-style-card-info strong {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+
+    color: #650019;
+
+    transition: opacity 0.3s ease;
+}
+
+.viora-style-card:hover .viora-style-card-info strong {
+    opacity: 0.6;
+}
+
+
+/* =========================================================
+   FEATURE / STYLE GUIDE
+   ========================================================= */
+
+.viora-style-feature {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+
+    background: #f2eee8;
+}
+
+
+/* IMAGE */
+
+.viora-style-feature-image {
+    width: 100%;
+    min-height: 620px;
+
+    overflow: hidden;
+}
+
+.viora-style-feature-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* CONTENT */
+
+.viora-style-feature-content {
+    padding: 80px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background: #faf9f6;
+}
+
+.viora-style-feature-content > p:first-child {
+    margin: 0 0 15px;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: #650019;
+}
+
+.viora-style-feature-content h2 {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.05;
+
+    color: #171414;
+}
+
+.viora-style-line {
+    width: 45px;
+    height: 1px;
+
+    margin: 25px 0;
+
+    background: #650019;
+}
+
+.viora-style-feature-content > p:not(:first-child) {
+    max-width: 390px;
+
+    margin: 0;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+
+    color: #766d66;
+}
+
+
+/* BUTTON */
+
+.viora-style-button {
+    width: fit-content;
+
+    margin-top: 30px;
+
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid #650019;
+
+    color: #650019;
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.8px;
+
+    transition:
+        opacity 0.3s ease,
+        padding 0.3s ease;
+}
+
+.viora-style-button span {
+    margin-left: 8px;
+
+    transition: margin-left 0.3s ease;
+}
+
+.viora-style-button:hover {
+    opacity: 0.65;
+}
+
+.viora-style-button:hover span {
+    margin-left: 14px;
+}
+
+
+/* =========================================================
+   JEWELRY CARE
+   ========================================================= */
+
+.viora-care-section {
+    width: min(1180px, calc(100% - 80px));
+    margin: 0 auto;
+
+    padding: 105px 0 115px;
+}
+
+.viora-care-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    border-top: 1px solid #e6dfd7;
+    border-bottom: 1px solid #e6dfd7;
+}
+
+.viora-care-item {
+    padding: 35px 30px 40px;
+
+    border-right: 1px solid #e6dfd7;
+}
+
+.viora-care-item:last-child {
+    border-right: none;
+}
+
+.viora-care-item > span {
+    display: block;
+
+    margin-bottom: 20px;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    color: #8b7768;
+}
+
+.viora-care-item h3 {
+    margin: 0 0 12px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 28px;
+    font-weight: 500;
+
+    color: #171414;
+}
+
+.viora-care-item p {
+    max-width: 280px;
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.8;
+
+    color: #766d66;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .viora-style-hero {
+        min-height: 400px;
+        padding: 100px 30px 75px;
+    }
+
+    .viora-style-hero h1 {
+        font-size: 62px;
+    }
+
+    .viora-style-categories,
+    .viora-care-section {
+        width: min(700px, calc(100% - 50px));
+    }
+
+    .viora-style-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .viora-style-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .viora-style-feature-image {
+        min-height: 500px;
+    }
+
+    .viora-style-feature-content {
+        padding: 70px 50px;
+    }
+
+    .viora-care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .viora-care-item {
+        border-right: none;
+        border-bottom: 1px solid #e6dfd7;
+    }
+
+    .viora-care-item:last-child {
+        border-bottom: none;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .viora-style-hero {
+        min-height: 370px;
+        padding: 90px 20px 65px;
+    }
+
+    .viora-style-eyebrow {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .viora-style-hero h1 {
+        font-size: 52px;
+        letter-spacing: 2px;
+    }
+
+    .viora-style-intro {
+        max-width: 340px;
+        font-size: 11px;
+    }
+
+
+    .viora-style-categories {
+        width: calc(100% - 30px);
+        padding: 70px 0;
+    }
+
+    .viora-style-section-heading {
+        margin-bottom: 35px;
+    }
+
+    .viora-style-section-heading h2 {
+        font-size: 36px;
+    }
+
+    .viora-style-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .viora-style-image {
+        height: 380px;
+    }
+
+
+    .viora-style-feature-image {
+        min-height: 420px;
+    }
+
+    .viora-style-feature-content {
+        padding: 60px 25px;
+    }
+
+    .viora-style-feature-content h2 {
+        font-size: 43px;
+    }
+
+
+    .viora-care-section {
+        width: calc(100% - 30px);
+        padding: 75px 0 80px;
+    }
+
+    .viora-care-item {
+        padding: 30px 20px 35px;
+    }
+
+    .viora-care-item h3 {
+        font-size: 26px;
+    }
 }

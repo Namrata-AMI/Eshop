@@ -8,11 +8,17 @@ module.exports.renderSignupForm = (req,res)=>{
 
 
 module.exports.signup = async(req,res,next)=>{
+    console.log("singup hit")
     try{
      let {username, email, password} = req.body;
+
+     console.log(req.body);
+
      const newUser = new User ({username,email});
      const registeredUser = await User.register(newUser,password);
-     console.log(registeredUser);
+     
+     console.log("after register",registeredUser);
+
      req.login(registeredUser,(err)=>{          // using passport login method to make user already login after sign-in//
          if(err){
              return next(err);
@@ -22,6 +28,7 @@ module.exports.signup = async(req,res,next)=>{
      });
     }
     catch(e){
+        console.log('signup error', e);
      req.flash("error",e.message);
      res.redirect("/app/signup");
     }

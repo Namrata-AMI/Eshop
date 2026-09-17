@@ -1,20 +1,96 @@
-
 <%- layout("/layouts/boilerplate.ejs") %>
 
-    <div class="row  align-items-center mt-3 mb-5 m-3">
-        <div class="col-md-6 text-center m-auto">
-                <img src= "<%=product.images[0] %>" class="product_img">
-        </div>
-        <div class="col-md-6 m-auto"> 
-                <h2 class="prdname"><%= product.name %></h2>
-                <p><strong>Price:</strong> $<%= product.price %></p>
-                <p><strong>Brand:</strong> <%= product.brand %></p>
-                <p><strong>Description:</strong> <%= product.description %></p>
+<section class="viora-detail-page">
 
-                <div class="mt-3 d-flex">
-                    <a href="/app/<%= product._id %>/purchase" class="btn btn-primary m-2">Purchase</a>
-                </div>
+    <div class="viora-detail-container">
+
+        <!-- LEFT : PRODUCT IMAGE -->
+        <div class="viora-detail-image-section">
+
+            <div class="viora-detail-image-wrap">
+
+                <img
+                    src="<%= product.images[0] %>"
+                    alt="<%= product.name %>"
+                    class="viora-detail-image"
+                >
+
             </div>
+
+            <p class="viora-image-caption">
+                VIORA FINE JEWELS
+            </p>
+
         </div>
 
 
+        <!-- RIGHT : PRODUCT INFORMATION -->
+        <div class="viora-detail-info">
+
+            <p class="viora-detail-eyebrow">
+                THE VIORA COLLECTION
+            </p>
+
+            <h1 class="viora-detail-title">
+                <%= product.name %>
+            </h1>
+
+            <div class="viora-detail-line"></div>
+
+
+            <p class="viora-detail-price">
+                $<%= product.price.toFixed(2) %>
+            </p>
+
+
+            <div class="viora-detail-meta">
+
+                <div class="viora-meta-row">
+                    <span>BRAND</span>
+                    <strong><%= product.brand %></strong>
+                </div>
+
+                <div class="viora-meta-row">
+                    <span>AVAILABILITY</span>
+                    <strong>IN STOCK</strong>
+                </div>
+
+            </div>
+
+
+            <div class="viora-detail-description">
+
+                <p>
+                    <%= product.description %>
+                </p>
+
+            </div>
+
+
+            <div class="viora-detail-actions">
+
+                <a
+                    href="/app/<%= product._id %>/purchase"
+                    class="viora-purchase-btn"
+                >
+
+                    <span>PURCHASE</span>
+
+                    <span class="viora-purchase-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <p class="viora-detail-note">
+                Crafted for moments that deserve to be remembered.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>

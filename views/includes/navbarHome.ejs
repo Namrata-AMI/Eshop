@@ -1,0 +1,43 @@
+<nav class="navbarHome">
+
+    <div class="home-navbar-inner">
+
+        <a href="/app" class="viora-brand">
+            VIORA
+        </a>
+
+        <div class="home-menu">
+
+            <a href="/app/products">SHOP</a>
+            <a href="/app/style">STYLE</a>
+            <a href="#">GIFTS</a>
+            <a href="#">CONCIERGE</a>
+            <a href="#">ABOUT</a>
+
+        </div>
+
+        <div class="home-actions">
+
+            <a href="/app/cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </a>
+
+            <% if (newUser) { %>
+
+                <a href="/app/logout">
+                    LOG OUT
+                </a>
+
+            <% } else { %>
+
+                <a href="/app/login">
+                    LOGIN
+                </a>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+</nav>

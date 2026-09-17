@@ -4,14 +4,18 @@
 
     <div class="viora-products-container">
 
+        <!-- =========================
+             COLLECTION HEADER
+        ========================== -->
+
         <div class="viora-products-header">
 
             <p class="viora-eyebrow">
-                THE VIORA EDIT
+                VIORA COLLECTION
             </p>
 
             <h1>
-                Our Collection
+                <%= collection %>
             </h1>
 
             <div class="viora-header-line"></div>
@@ -19,11 +23,17 @@
         </div>
 
 
+        <!-- =========================
+             PRODUCTS
+        ========================== -->
+
         <div class="viora-product-grid">
 
             <% products.forEach(product => { %>
 
-                <article class="viora-product-card">
+                <div class="viora-product-card">
+
+                    <!-- PRODUCT IMAGE -->
 
                     <a
                         href="/app/<%= product._id %>"
@@ -35,6 +45,7 @@
                             <img
                                 src="<%= product.images[0] %>"
                                 alt="<%= product.name %>"
+                                loading="lazy"
                             >
 
                             <span class="viora-view-overlay">
@@ -46,7 +57,11 @@
                     </a>
 
 
+                    <!-- PRODUCT CONTENT -->
+
                     <div class="viora-product-content">
+
+                        <!-- NAME + PRICE -->
 
                         <div class="viora-product-heading">
 
@@ -62,35 +77,31 @@
 
                             </div>
 
-                            <span class="viora-product-price">
-                                $<%= product.price.toFixed(2) %>
-                            </span>
+                            <p class="viora-product-price">
+                                ₹<%= product.price %>
+                            </p>
 
                         </div>
 
+
+                        <!-- DESCRIPTION -->
 
                         <p class="viora-product-description">
                             <%= product.description %>
                         </p>
 
 
+                        <!-- ACTIONS -->
+
                         <div class="viora-product-actions">
 
-                            <form
-                                action="/app/cart/<%= product._id %>"
-                                method="POST"
+                            <button
+                                type="button"
+                                class="viora-add-cart"
                             >
-
-                                <button
-                                    type="submit"
-                                    class="viora-add-cart"
-                                >
-                                    <i class="fa-solid fa-bag-shopping"></i>
-                                    ADD TO CART
-                                </button>
-
-                            </form>
-
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                ADD TO CART
+                            </button>
 
                             <a
                                 href="/app/<%= product._id %>"
@@ -104,7 +115,7 @@
 
                     </div>
 
-                </article>
+                </div>
 
             <% }) %>
 

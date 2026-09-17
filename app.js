@@ -12,7 +12,9 @@ const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const User = require("./models/user.js");
 const cors = require("cors");
-const MongoStore = require("connect-mongo");
+
+const { MongoStore } = require("connect-mongo");
+
 
 const productRoutes = require("./routes/product.js");
 const userRoutes = require("./routes/user.js");
@@ -47,16 +49,24 @@ app.use(cors({
 
 
 
+//console.log(MongoStore);
+//process.exit();
+
+
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600,
+});
+
+
 const sessionOptions = {
+    store,
     secret: process.env.SECRET || 'defaultsecret',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-    cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-    }
 };
 
 
@@ -75,12 +85,22 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
+
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.newUser = req.user;
+
+    // Home page
+    if (req.path === "/app" || req.path === "/app/") {
+        res.locals.isHome = true;
+    } else {
+        res.locals.isHome = false;
+    }
+
     if (!req.session.cart) {
         req.session.cart = [];
     }
+
     next();
 });
 
@@ -92,28 +112,27 @@ app.use("/app", productRoutes);
 
 
 
-app.all("*", (req, res) => {
+app.use((req, res) => {
     req.flash("error", "Page not available");
     return res.redirect("/app");
 });
 
 
 
-main()
-.then(() => {
-    console.log("db connected");
-})
-.catch((e) => {
-    console.error("db error:", e);
-});
+const port = 8080;
 
 
 async function main() {
+        console.log(dbUrl);
+
+
     await mongoose.connect(dbUrl);
+    console.log("DB Connected");
+
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
 }
 
-const port = 8080;
+main().catch(err => console.error(err));
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
