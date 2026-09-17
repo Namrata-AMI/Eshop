@@ -119,20 +119,16 @@ app.use((req, res) => {
 
 
 
-const port = 8080;
-
 
 async function main() {
-        console.log(dbUrl);
+    console.log(dbUrl);
 
-
-    await mongoose.connect(dbUrl);
-    console.log("DB Connected");
-
-    app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
-    });
+    if (mongoose.connection.readyState === 0) {
+        await mongoose.connect(dbUrl);
+        console.log("DB Connected");
+    }
 }
 
 main().catch(err => console.error(err));
 
+module.exports = app;
