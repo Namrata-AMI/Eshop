@@ -7,32 +7,34 @@ module.exports.renderSignupForm = (req,res)=>{
 }
 
 
-module.exports.signup = async(req,res,next)=>{
-    console.log("singup hit")
-    try{
-     let {username, email, password} = req.body;
+module.exports.signup = async (req, res, next) => {
+    try {
+        const { username, email, password } = req.body;
 
-     console.log(req.body);
-
-     const newUser = new User ({username,email});
-     const registeredUser = await User.register(newUser,password);
-     
-     console.log("after register",registeredUser);
-
-     req.login(registeredUser,(err)=>{          // using passport login method to make user already login after sign-in//
-         if(err){
-             return next(err);
+        if (!username || !email || !password) {
+            return res.status(400).send("Please fill all fields");
         }
-        req.flash("success","Welcome to Eshop!!");
-        res.redirect("/app");
-     });
+
+        const newUser = new User({
+            username,
+            email
+        });
+
+        const registeredUser = await User.register(newUser, password);
+
+        req.login(registeredUser, (err) => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect("/app");
+        });
+
+    } catch (e) {
+        console.error("Signup error:", e);
+        return res.status(400).send(e.message);
     }
-    catch(e){
-        console.log('signup error', e);
-     req.flash("error",e.message);
-     res.redirect("/app/signup");
-    }
- }
+};
 
 
 
