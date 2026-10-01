@@ -1,0 +1,141 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+<section class="viora-order-page">
+
+    <div class="viora-order-header">
+
+        <p class="viora-order-eyebrow">
+            THE VIORA EDIT
+        </p>
+
+        <h1 class="viora-order-title">
+            Order Confirmed
+        </h1>
+
+        <div class="viora-order-line"></div>
+
+
+        <p class="viora-order-message">
+            Thank you for choosing VIORA.
+            Your order has been received and is being prepared with care.
+        </p>
+
+    </div>
+
+
+    <div class="viora-order-container">
+
+        <div class="viora-order-info">
+
+            <div class="viora-order-section">
+
+                <p class="viora-order-label">
+                    ORDER DETAILS
+                </p>
+
+                <div class="viora-order-number">
+                    <span>ORDER ID</span>
+                    <strong><%= order._id %></strong>
+                </div>
+
+                <div class="viora-order-number">
+                    <span>STATUS</span>
+                    <strong><%= order.status %></strong>
+                </div>
+
+            </div>
+
+
+            <div class="viora-order-section">
+
+                <p class="viora-order-label">
+                    DELIVERY INFORMATION
+                </p>
+
+                <p class="viora-delivery-name">
+                    <%= order.delivery.name %>
+                </p>
+
+                <p class="viora-delivery-text">
+                    <%= order.delivery.address %><br>
+                    <%= order.delivery.city %>,
+                    <%= order.delivery.state %><br>
+                    <%= order.delivery.pincode %>
+                </p>
+
+                <p class="viora-delivery-contact">
+                    <%= order.delivery.email %><br>
+                    <%= order.delivery.phone %>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="viora-order-summary">
+
+            <p class="viora-order-label">
+                YOUR ORDER
+            </p>
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="viora-order-items">
+
+                <% order.items.forEach(item => { %>
+
+                    <div class="viora-order-item">
+
+                        <div>
+                            <h3>
+                                <%= item.name %>
+                            </h3>
+
+                            <p>
+                                <%= item.quantity %> × ₹<%= item.price %>
+                            </p>
+                        </div>
+
+                        <strong>
+                            ₹<%= item.price * item.quantity %>
+                        </strong>
+
+                    </div>
+
+                <% }) %>
+
+            </div>
+
+
+            <div class="viora-order-total">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    ₹<%= order.total %>
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="viora-order-actions">
+
+        <a href="/app/products" class="viora-order-btn">
+            CONTINUE SHOPPING
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+

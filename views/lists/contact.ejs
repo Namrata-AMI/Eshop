@@ -1,0 +1,320 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+<section class="viora-contact">
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <section class="viora-contact-hero">
+
+        <div class="viora-contact-hero-text">
+
+            <p class="viora-contact-label">
+                CONTACT VIORA
+            </p>
+
+            <h1>
+                We'd Love<br>
+                To Hear From You
+            </h1>
+
+            <p class="viora-contact-intro">
+                Whether you have a question, need assistance,
+                or simply want to know more about VIORA,
+                we're here to help.
+            </p>
+
+            <div class="viora-contact-line"></div>
+
+        </div>
+
+
+        <div class="viora-contact-hero-image">
+
+            <img
+                src="/assets/rectangle 159.png"
+                alt="VIORA jewellery">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CONTACT AREA
+    ========================================== -->
+
+    <section class="viora-contact-main">
+
+
+        <!-- DETAILS -->
+
+        <div class="viora-contact-details">
+
+            <p class="viora-contact-label">
+                GET IN TOUCH
+            </p>
+
+
+            <div class="viora-contact-detail">
+
+                <span>01</span>
+
+                <div>
+
+                    <h3>Email</h3>
+
+                    <a href="mailto:hello@vioraxx.com">
+                        hello@vioraxx.com
+                    </a>
+
+                    <p>
+                        We usually respond within 24 hours.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="viora-contact-detail">
+
+                <span>02</span>
+
+                <div>
+
+                    <h3>Phone</h3>
+
+                    <a href="tel:+919876543210">
+                        +91 xxxxxxxx
+                    </a>
+
+                    <p>
+                        Monday – Friday · 10 AM – 6 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="viora-contact-detail">
+
+                <span>03</span>
+
+                <div>
+
+                    <h3>Studio</h3>
+
+                    <p>
+                        New Delhi, India
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             FORM
+        ====================================== -->
+
+        <div class="viora-contact-form-wrapper">
+
+            <p class="viora-contact-label">
+                SEND US A MESSAGE
+            </p>
+
+            <h2>
+                Let's Start<br>
+                A Conversation.
+            </h2>
+
+            <% if (message) { %>
+                <div class="viora-contact-message">
+                    <%= message %>
+                </div>
+            <% } %>
+
+            <!-- FORM -->
+
+            <form
+                action="/app/contact"
+                method="POST"
+                class="viora-contact-form"
+                id="viora-contact-form"
+            >
+
+                <!-- NAME + EMAIL -->
+
+                <div class="viora-form-row">
+
+
+                    <div class="viora-form-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="viora-form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Your email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBJECT -->
+
+                <div class="viora-form-group">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <select
+                        id="subject"
+                        name="subject"
+                    >
+
+                        <option value="">
+                            Select a subject
+                        </option>
+
+                        <option value="general">
+                            General enquiry
+                        </option>
+
+                        <option value="order">
+                            Order assistance
+                        </option>
+
+                        <option value="jewellery">
+                            Jewellery enquiry
+                        </option>
+
+                        <option value="concierge">
+                            Concierge service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="viora-form-group">
+
+                    <label for="message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Tell us how we can help..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="viora-contact-button"
+                >
+
+                    SEND MESSAGE
+
+                    <span>→</span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         IMAGE / BRAND SECTION
+    ========================================== -->
+
+    <section class="viora-contact-image-section">
+
+
+        <div class="viora-contact-image">
+
+            <img
+                src="/assets/img1.png"
+                alt="VIORA jewellery collection"
+            >
+
+        </div>
+
+
+        <div class="viora-contact-image-content">
+
+            <p class="viora-contact-label">
+                THE VIORA EXPERIENCE
+            </p>
+
+            <h2>
+                Thoughtful pieces.<br>
+                Personal moments.
+            </h2>
+
+            <p>
+                Every piece tells a story. If you're looking
+                for something particular, our team would be
+                delighted to help you discover it.
+            </p>
+
+            <a
+                href="/app/concierge"
+                class="viora-contact-link"
+            >
+
+                EXPLORE CONCIERGE
+
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</section>
+
+

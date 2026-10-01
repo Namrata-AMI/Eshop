@@ -40,11 +40,12 @@ module.exports.signup = async (req, res, next) => {
 
 
 module.exports.renderLoginForm = (req,res)=>{
-    res.render("User/login.ejs")
+    console.log("MESSAGE:", req.query.message);
+    res.render("User/login.ejs",{message: req.query.message || null});
 };
 
 
-module.exports.login = async (req,res)=>{
+ /*module.exports.login = async (req,res)=>{
     let {username, password} = req.body;
     if(!username || !password){
         req.flash("error","Please provide correct username and password");
@@ -65,7 +66,7 @@ module.exports.login = async (req,res)=>{
         res.redirect("/app/login");
     }  
 }
-
+*/
 
 module.exports.logOut = (req,res,next)=>{
     req.logout((err)=>{

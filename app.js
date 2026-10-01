@@ -11,7 +11,6 @@ const flash = require("connect-flash");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const User = require("./models/user.js");
-const cors = require("cors");
 
 const { MongoStore } = require("connect-mongo");
 
@@ -29,12 +28,6 @@ app.engine("ejs", ejsMate);
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
-
-
-const allowedOrigins = [
-    'http://localhost:8080',
-    'https://eshop-three-weld.vercel.app'
-];
 
 
 

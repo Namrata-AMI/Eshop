@@ -1,0 +1,218 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+
+<section class="viora-checkout-page">
+
+    <!-- CHECKOUT HEADER -->
+    <div class="viora-checkout-header">
+        <p class="viora-checkout-eyebrow">
+            THE VIORA EDIT
+        </p>
+
+        <h1 class="viora-checkout-title">
+            Checkout
+        </h1>
+
+        <div class="viora-checkout-line"></div>
+    </div>
+
+
+    <% if (message) { %>
+
+        <div class="viora-checkout-message">
+            <%= message %>
+        </div>
+
+    <% } %>
+
+
+    <div class="viora-checkout-content">
+
+        <!-- =========================
+             CUSTOMER INFORMATION
+        ========================== -->
+
+        <div class="viora-checkout-form">
+
+            <p class="viora-checkout-section-label">
+                DELIVERY INFORMATION
+            </p>
+
+            <h2>
+                Where should we deliver?
+            </h2>
+
+            <form action="/app/checkout" method="POST">
+
+                <div class="viora-form-group">
+                    <label for="name">FULL NAME</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                    >
+                </div>
+
+
+                <div class="viora-form-row">
+
+                    <div class="viora-form-group">
+                        <label for="email">EMAIL</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="viora-form-group">
+                        <label for="phone">PHONE</label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="viora-form-group">
+                    <label for="address">ADDRESS</label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+
+
+                <div class="viora-form-row">
+
+                    <div class="viora-form-group">
+                        <label for="city">CITY</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            required
+                        >
+                    </div>
+
+                    <div class="viora-form-group">
+                        <label for="state">STATE</label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            name="state"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="viora-form-group">
+                    <label for="pincode">PINCODE</label>
+
+                    <input
+                        type="text"
+                        id="pincode"
+                        name="pincode"
+                        required
+                    >
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="viora-place-order-btn"
+                >
+                    PLACE ORDER
+                    <span>→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             ORDER SUMMARY
+        ========================== -->
+
+        <aside class="viora-checkout-summary">
+
+            <p class="viora-checkout-section-label">
+                YOUR ORDER
+            </p>
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="viora-checkout-items">
+
+                <% cart.items.forEach(item => { %>
+
+                    <div class="viora-checkout-item">
+
+                        <div class="viora-checkout-item-info">
+
+                            <h3>
+                                <%= item.product.name %>
+                            </h3>
+
+                            <p>
+                                <%= item.product.brand %>
+                            </p>
+
+                        </div>
+
+
+                        <div class="viora-checkout-item-price">
+
+                            <span>
+                                <%= item.quantity %> ×
+                            </span>
+
+                            <strong>
+                                ₹<%= item.product.price %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+            </div>
+
+
+            <div class="viora-checkout-total">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    ₹<%= total %>
+                </strong>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>

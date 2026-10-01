@@ -92,16 +92,20 @@
 
 
                         <!-- ACTIONS -->
-
                         <div class="viora-product-actions">
 
-                            <button
-                                type="button"
-                                class="viora-add-cart"
+                            <form
+                                action="/app/cart/<%= product._id %>"
+                                method="POST"
                             >
-                                <i class="fa-solid fa-bag-shopping"></i>
-                                ADD TO CART
-                            </button>
+                                <button
+                                    type="submit"
+                                    class="viora-add-cart"
+                                >
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                    ADD TO CART
+                                </button>
+                            </form>
 
                             <a
                                 href="/app/<%= product._id %>"

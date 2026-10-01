@@ -1,5 +1,6 @@
 const Product = require("../models/product.js");
 const Cart = require("../models/cart.js");
+const Order = require("../models/order.js");
 
 
 // home
@@ -60,18 +61,46 @@ exports.searchProduct = async (req, res) => {
 // View cart items
 exports.cartItems = async (req, res) => {
     try {
-        const cart = await Cart.findOne({ user: req.user._id }).populate("items.product");
-        if (!cart || cart.items.length === 0) {
-            req.flash("error", "Nothing is in the cart");
-            return res.redirect("/app");
+        const cart = await Cart.findOne({
+            user: req.user._id
+        }).populate("items.product");
+
+        // Cart does not exist
+        if (!cart) {
+            return res.render("lists/cart", {
+                cart: {
+                    items: []
+                },
+                message: "Your cart is empty"
+            });
         }
-        res.render("lists/cart", { cart });
+
+        // Cart exists but has no items
+        if (cart.items.length === 0) {
+            return res.render("lists/cart", {
+                cart,
+                message: "Your cart is empty"
+            });
+        }
+
+        // Cart has products
+        res.render("lists/cart", {
+            cart,
+            message: req.query.message || null
+        });
+
     } catch (e) {
         console.error("Error fetching cart items:", e);
-        req.flash("error", "Something went wrong!");
-        return res.redirect("/app");
+
+        return res.render("lists/cart", {
+            cart: {
+                items: []
+            },
+            message: "Something went wrong. Please try again."
+        });
     }
 };
+
 
 // Add to cart
 exports.cart = async (req, res) => {
@@ -145,6 +174,50 @@ exports.addqnt = async (req, res) => {
         return res.redirect("/app/cart");
     }
 };
+
+
+// Decrease quantity
+exports.decreaseqnt = async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const userId = req.user._id;
+
+        const cart = await Cart.findOne({ user: userId });
+
+        if (!cart) {
+            return res.redirect("/app/cart");
+        }
+
+        const item = cart.items.find(
+            item => item.product.toString() === productId
+        );
+
+        if (!item) {
+            return res.redirect("/app/cart");
+        }
+
+        // If quantity is more than 1, decrease it
+        if (item.quantity > 1) {
+            item.quantity -= 1;
+        } 
+        // If quantity is 1, remove the item
+        else {
+            cart.items = cart.items.filter(
+                item => item.product.toString() !== productId
+            );
+        }
+
+        await cart.save();
+
+        return res.redirect("/app/cart");
+
+    } catch (e) {
+        console.error("Error decreasing quantity:", e);
+        return res.redirect("/app/cart");
+    }
+};
+
+
 
 // Decrease quantity or delete from cart
 exports.delqnt = async (req, res) => {
@@ -225,4 +298,237 @@ exports.getCollection = async (req, res) => {
 //style page
 exports.getStyle = (req, res) => {
     res.render("lists/style");
+};
+
+
+// gitfs page
+
+exports.getGift = (req,res)=>{
+    res.render("lists/gift");
+}
+
+
+// style_guide page
+
+exports.getGuide = (req,res)=>{
+    res.render("lists/style_guide");
+}
+
+
+// about page
+
+exports.getAbout = (req,res)=>{
+    res.render("lists/about");
+}
+
+
+// concierge page
+
+exports.getConcierge = (req,res)=>{
+    res.render("lists/concierge");
+}
+
+
+
+
+// contact page
+
+exports.getContact = (req, res) => {
+    console.log("MESSAGE:", req.query.message);
+
+    res.render("lists/contact.ejs", {
+        message: req.query.message || null
+    });
+};
+
+
+// contact post
+
+exports.postContact = async (req, res) => {
+    try {
+        const { name, email, subject, message } = req.body;
+
+        if (!name || !email || !message) {
+            return res.redirect(
+                "/app/contact?message=Please fill all required fields"
+            );
+        }
+
+        // Contact form processing will go here
+
+        return res.redirect(
+            "/app/contact?message=Thank you for reaching out. We will be in touch shortly."
+        );
+
+    } catch (e) {
+        console.error("Contact error:", e);
+
+        return res.redirect(
+            "/app/contact?message=Something went wrong. Please try again."
+        );
+    }
+};
+
+
+
+
+// checkout page
+
+exports.getCheckout = async (req, res) => {
+    try {
+        const cart = await Cart.findOne({
+            user: req.user._id
+        }).populate("items.product");
+
+        if (!cart || cart.items.length === 0) {
+            return res.redirect(
+                "/app/cart?message=Your cart is empty"
+            );
+        }
+
+        let total = 0;
+
+        cart.items.forEach(item => {
+            console.log(
+                "PRODUCT:",
+                item.product.name,
+                "PRICE:",
+                item.product.price,
+                "QUANTITY:",
+                item.quantity
+            );
+
+            total += Number(item.product.price) * Number(item.quantity);
+        });
+
+        console.log("CHECKOUT TOTAL:", total);
+
+        res.render("lists/checkout", {
+            cart,
+            total,
+            message: req.query.message || null
+        });
+
+    } catch (e) {
+        console.error("Error loading checkout:", e);
+
+        return res.redirect(
+            "/app/cart?message=Something went wrong. Please try again."
+        );
+    }
+};
+
+
+
+// post checkout
+
+exports.postCheckout = async (req, res) => {
+    try {
+
+        const cart = await Cart.findOne({
+            user: req.user._id
+        }).populate("items.product");
+
+        if (!cart || cart.items.length === 0) {
+            return res.redirect(
+                "/app/checkout?message=Your cart is empty"
+            );
+        }
+
+        const {
+            name,
+            email,
+            phone,
+            address,
+            city,
+            state,
+            pincode
+        } = req.body;
+
+        let total = 0;
+
+        const orderItems = cart.items.map(item => {
+
+            const price = Number(item.product.price);
+            const quantity = Number(item.quantity);
+
+            total += price * quantity;
+
+            return {
+                product: item.product._id,
+                name: item.product.name,
+                price: price,
+                quantity: quantity
+            };
+        });
+
+        const order = new Order({
+            user: req.user._id,
+
+            items: orderItems,
+
+            total: total,
+
+            delivery: {
+                name,
+                email,
+                phone,
+                address,
+                city,
+                state,
+                pincode
+            },
+
+            status: "Pending"
+        });
+
+        await order.save();
+
+        cart.items = [];
+        await cart.save();
+
+        return res.redirect(
+            `/app/order/${order._id}?message=Your order has been placed successfully`
+        );
+
+    } catch (e) {
+
+        console.error("Error placing order:", e);
+
+        return res.redirect(
+            "/app/checkout?message=Something went wrong. Please try again."
+        );
+    }
+};
+
+
+
+// get order
+exports.getOrder = async (req, res) => {
+    try {
+
+        const order = await Order.findOne({
+            _id: req.params.id,
+            user: req.user._id
+        }).populate("items.product");
+
+        if (!order) {
+            return res.redirect(
+                "/app/checkout?message=Order not found"
+            );
+        }
+
+        res.render("lists/order", {
+            order,
+            message: req.query.message || null
+        });
+
+    } catch (e) {
+
+        console.error("Error loading order:", e);
+
+        return res.redirect(
+            "/app/checkout?message=Unable to load your order"
+        );
+    }
 };

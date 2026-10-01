@@ -1,47 +1,251 @@
 <%- layout("/layouts/boilerplate.ejs") %>
 
-<div class="container py-5">
-        <h1 class="text-center mb-4"><i class="fa-solid fa-cart-shopping" style="color: #74C0FC;"></i> Your Cart </h1>
+<section class="viora-cart-page">
 
-        <% if (cart.items && cart.items.length > 0) { %>
-            <div class="list-group">
-                <% cart.items.forEach(item => { %>
-                    <div class="list-group-item list-group-item-action mb-3 shadow-sm rounded">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="mb-1"><%= item.product.name %></h5>
-                                <p class="mb-1">Price: ₹<%= item.product.price %> <%= item.product.price * item.quantity %></p>
-                                <p class="mb-1">Quantity: <%= item.quantity %></p>
-                            </div>
-                            <div class="d-flex ">
-                                <form action="/app/cart/increase/<%= item.product._id %>" method="POST">
-                                    <button type="submit" class="btn btn-warning mx-1">Quantity +</button>
-                                </form>
-                                <form action="/app/cart/delete/<%= item.product._id %>" method="POST">
-                                    <button type="submit" class="btn btn-dark mx-1">Delete</button>
-                                </form>
-                            </div>
+    <!-- =========================
+         CART HEADER
+    ========================== -->
+
+    <div class="viora-cart-header">
+
+        <p class="viora-cart-eyebrow">
+            THE VIORA EDIT
+        </p>
+
+        <h1 class="viora-cart-title">
+            Your Cart
+        </h1>
+
+        <div class="viora-cart-line"></div>
+
+    </div>
+
+
+    <% if (message) { %>
+
+        <div class="viora-cart-message">
+            <%= message %>
+        </div>
+
+    <% } %>
+
+
+    <% if (cart.items && cart.items.length > 0) { %>
+
+        <!-- =========================
+             CART ITEMS
+        ========================== -->
+
+        <div class="viora-cart-items">
+
+            <% cart.items.forEach((item, index) => { %>
+
+                <article class="viora-cart-item">
+
+                    <!-- PRODUCT INFORMATION -->
+
+                    <div class="viora-cart-item-info">
+
+                        <div class="viora-cart-item-number">
+                            <%= String(index + 1).padStart(2, "0") %>
                         </div>
-                    </div>
-                <% }) %>
-            </div>
-        <% } else { %>
-            <div class="alert alert-warning text-center" role="alert">
-                Your cart is empty.
-            </div>
-        <% } %>
 
-        <% 
+                        <div class="viora-cart-item-details">
+
+                            <h2>
+                                <%= item.product.name %>
+                            </h2>
+
+                            <p class="viora-cart-brand">
+                                <%= item.product.brand %>
+                            </p>
+
+                            <p class="viora-cart-price">
+                                ₹<%= item.product.price %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <div class="viora-cart-quantity">
+
+                        <span class="viora-cart-small-label">
+                            QUANTITY
+                        </span>
+
+                        <div class="viora-quantity-controls">
+
+                            <!-- DECREASE -->
+
+                            <form
+                                action="/app/cart/decrease/<%= item.product._id %>"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="viora-quantity-btn"
+                                >
+                                    −
+                                </button>
+
+                            </form>
+
+
+                            <!-- CURRENT QUANTITY -->
+
+                            <span class="viora-cart-quantity-number">
+                                <%= item.quantity %>
+                            </span>
+
+
+                            <!-- INCREASE -->
+
+                            <form
+                                action="/app/cart/increase/<%= item.product._id %>"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="viora-quantity-btn"
+                                >
+                                    +
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div class="viora-cart-subtotal">
+
+                        <span class="viora-cart-small-label">
+                            SUBTOTAL
+                        </span>
+
+                        <span>
+                            ₹<%= item.product.price * item.quantity %>
+                        </span>
+
+                    </div>
+
+
+                    <!-- DELETE -->
+
+                    <div class="viora-cart-delete">
+
+                        <form
+                            action="/app/cart/delete/<%= item.product._id %>"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="viora-delete-btn"
+                            >
+                                REMOVE
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </article>
+
+            <% }) %>
+
+        </div>
+
+
+        <!-- =========================
+             CART SUMMARY
+        ========================== -->
+
+        <%
             let total = 0;
+
             cart.items.forEach(item => {
                 total += item.product.price * item.quantity;
             });
         %>
 
-        <h3 class="text-end mt-4 fw-bold">Total: ₹<%= total %></h3>
+
+        <div class="viora-cart-summary">
+
+            <div class="viora-cart-summary-left">
+
+                <a href="/app/products">
+                    ← CONTINUE SHOPPING
+                </a>
+
+            </div>
 
 
-        <div class="text-center mt-4">
-            <a href="/app" class="btn"> <i class="fa-solid fa-bag-shopping" style="font-size:1.5rem; margin:2px;"></i> Continue Shopping</a>
+            <div class="viora-cart-summary-right">
+
+                <p class="viora-cart-summary-label">
+                    TOTAL
+                </p>
+
+                <h2>
+                    ₹<%= total %>
+                </h2>
+
+                <a
+                    href="/app/checkout"
+                    class="viora-checkout-btn"
+                >
+                    PROCEED TO CHECKOUT
+                    <span>→</span>
+                </a>
+
+            </div>
+
         </div>
-    </div>
+
+
+    <% } else { %>
+
+
+        <!-- =========================
+             EMPTY CART
+        ========================== -->
+
+        <section class="viora-empty-cart">
+
+            <p class="viora-empty-label">
+                YOUR VIORA CART
+            </p>
+
+            <h2>
+                Your Cart Is Empty
+            </h2>
+
+            <p>
+                Discover something beautiful and find
+                a piece made for your moments.
+            </p>
+
+            <a
+                href="/app/products"
+                class="viora-empty-button"
+            >
+                CONTINUE SHOPPING
+                <span>→</span>
+            </a>
+
+        </section>
+
+
+    <% } %>
+
+</section>

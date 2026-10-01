@@ -69,18 +69,22 @@
 
             <div class="viora-detail-actions">
 
-                <a
-                    href="/app/<%= product._id %>/purchase"
+               <form
+                action="/app/cart/<%= product._id %>"
+                method="POST"
+                class="viora-detail-actions"
+            >
+                <button
+                    type="submit"
                     class="viora-purchase-btn"
                 >
-
-                    <span>PURCHASE</span>
+                    <span>ADD TO CART</span>
 
                     <span class="viora-purchase-arrow">
                         →
                     </span>
-
-                </a>
+                </button>
+            </form>
 
             </div>
 
